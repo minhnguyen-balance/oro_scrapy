@@ -1,0 +1,3 @@
+balancenet_scrapy_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: BalancenetScrapyBundle:Default:index }

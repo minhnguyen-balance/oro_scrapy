@@ -1,0 +1,48 @@
+balanenet:
+  scrapy:
+    entity_label:        Scraper
+    entity_plural_label: Scraper
+    # entity_description:  Represent address
+    id.label:           Id
+    parent.label:       Franchise
+
+    name.label:         Name
+    label.label:        Label
+
+    street.label:       Street Line 1
+    street2.label:      Street Line 2
+    city.label:         City
+    region.label:       Region
+    country.label:      Country
+    postalcode.label:   Postal Code
+
+    created_at.label:   Created
+    updated_at.label:   Updated
+
+
+  franchisor:
+    entity_label:        Franchisor
+    entity_plural_label: Franchisors
+    # entity_description:  Represent address
+    id.label:           Id
+    label.label:        Label
+    name.label:         Name
+    owner.label:        Owner
+
+    created_at.label:   Created
+    updated_at.label:   Updated
+
+
+
+  person:
+    entity_label:        Person
+    entity_plural_label: People
+
+    id.label:           Id
+    label.label:        Label
+    firstname.label:    First Name
+    lastname.label:     Last Name
+    email.label:        Email
+
+    created_at.label:   Created
+    updated_at.label:   Updated

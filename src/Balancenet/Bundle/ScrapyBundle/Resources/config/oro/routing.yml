@@ -1,0 +1,4 @@
+balancenet_scrapy:
+    resource: "@BalancenetScrapyBundle/Controller"
+    type: annotation
+    prefix: /scrapy

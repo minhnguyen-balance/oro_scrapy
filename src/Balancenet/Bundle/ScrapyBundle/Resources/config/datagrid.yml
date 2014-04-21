@@ -1,0 +1,84 @@
+datagrid:
+    #Franchisor Grid
+    scraper-grid:
+        extended_entity_name: %balancenet_scrapy.entity.scraper.class%
+        options:
+            entityHint: scraper
+        source:
+            acl_resource: oro_user_user_view
+            type: orm
+            query:
+                select:
+                    - f.id
+                    - f.name
+                from:
+                    - { table: %balancenet_scrapy.entity.scraper.class%, alias: f }
+        columns:
+            name:
+                label: balanenet.scraper.name.label
+
+        properties:
+            id: ~
+            update_link:
+                type: url
+                route: nearest_franchise_franchisor_update
+                params:
+                    - id
+            view_link:
+                type: url
+                route: nearest_franchise_franchisor_view
+                params:
+                    - id
+            delete_link:
+                type: url
+                route: oro_api_delete_user
+                params:
+                    - id
+        sorters:
+            columns:
+                name:
+                    data_name: f.name
+            default:
+                username: %oro_datagrid.extension.orm_sorter.class%::DIRECTION_ASC
+
+        filters:
+            columns:
+
+        actions:
+            view:
+                type:          navigate
+                acl_resource:  nearest_franchise_franchisor_view
+                label:         View
+                icon:          user
+                link:          view_link
+                rowAction:     true
+            update:
+                type:          navigate
+                acl_resource:  nearest_franchise_franchisor_update
+                label:         Update
+                icon:          edit
+                link:          update_link
+            delete:
+                type:          delete
+                acl_resource:  nearest_franchise_franchisor_delete
+                label:         Delete
+                icon:          trash
+                link:          delete_link
+
+    # Tasks assigned to user
+    franchisee_people_grid:
+        extend: person-grid
+        source:
+            query:
+                where:
+                    and:
+                        - p.franchisee = :franchiseeId
+
+    # Tasks assigned to user
+    franchisor_franchisees_grid:
+        extend: franchisee-grid
+        source:
+            query:
+                where:
+                    and:
+                        - f.parent = :franchisorId

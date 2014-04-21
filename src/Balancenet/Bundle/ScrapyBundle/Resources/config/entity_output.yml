@@ -1,0 +1,8 @@
+Nearest\Bundle\FranchiseBundle\Entity\Franchisee:
+    icon_class:                         icon-franchisee
+    name:                               nearest.franchise.franchisee.entity_label
+    description:                        nearest.franchise.franchisee.entity_description
+Nearest\Bundle\FranchiseBundle\Entity\Franchisor:
+    icon_class:                         icon-franchisor
+    name:                               nearest.franchise.franchisor.entity_label
+    description:                        nearest.franchise.franchisor.entity_description

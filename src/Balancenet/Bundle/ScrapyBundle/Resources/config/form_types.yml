@@ -1,0 +1,38 @@
+parameters:
+    nearest_franchise.franchisee.entity.class:                Nearest\Bundle\FranchiseBundle\Entity\Franchisee
+    nearest_franchise.form.type.franchisee.class:             Nearest\Bundle\FranchiseBundle\Form\Type\FranchiseeType
+
+services:
+    nearest_franchise.form.type.franchisee:
+        class: %nearest_franchise.franchisee.entity.class%
+        tags:
+            - { name: form.type, alias: nearest_franchise_franchisee }
+
+#    nearest_franchise.form.report:
+#        class:           Symfony\Component\Form\Form
+#        factory_method:  createNamed
+#        factory_service: form.factory
+#        arguments:
+#            - "nearest_franchise_form"
+#            - "nearest_franchise"
+#
+#    nearest_franchise.form.handler.report:
+#        class: %nearest_franchise.form.handler.report.class%
+#        scope: request
+#        arguments:
+#            - @nearest_franchise.form.report
+#            - @request
+#            - @doctrine.orm.entity_manager
+#
+#    nearest_franchise.report.manager.api:
+#        class: %oro_report.report.manager.api.class%
+#        arguments:
+#            - %oro_report.report.entity.class%
+#            - @doctrine.orm.entity_manager
+#
+#    nearest_franchise.form.type.entity_choice:
+#        class: %nearest_franchise.form.type.entity_choice.class%
+#        arguments:
+#            - @nearest_franchise.entity_provider
+#        tags:
+#            - { name: form.type, alias: nearest_franchise_entity_choice }

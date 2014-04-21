@@ -1,0 +1,29 @@
+balancenet_scrapy:
+    resource: "@BalancenetScrapyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#
+# 3rd party routes
+#
+nelmio_api_doc:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_imagine:
+    resource: .
+    type:     imagine
+
+#
+# ORO routes
+#
+oro_default:
+    pattern:  /
+    defaults:
+        _controller: OroDashboardBundle:Dashboard:index
+
+oro_auto_routing:
+    resource: .
+    type:     oro_auto
