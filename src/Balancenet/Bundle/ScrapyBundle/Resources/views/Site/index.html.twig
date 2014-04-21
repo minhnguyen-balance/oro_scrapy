@@ -1,13 +1,13 @@
 {% extends 'OroUIBundle:actions:index.html.twig' %}
 {% import 'OroUIBundle::macros.html.twig' as UI %}
-{% set gridName = 'scraper-grid' %}
-{% set pageTitle = 'balancenet.scraper.entity_plural_label'|trans %}
+{% set gridName = 'site-grid' %}
+{% set pageTitle = 'balancenet.site.entity_plural_label'|trans %}
 
 {% block navButtons %}
     {#{% if resource_granted('nearest_campaign_page_create') %} -- skip acl for now #}
     {{ UI.addButton({
-    'path': path('balancenet_scrapy_scraper_create'),
-    'entity_label': 'balancenet.scraper.entity_label'|trans
+    'path': path('balancenet_scrapy_site_create'),
+    'entity_label': 'balancenet.site.entity_label'|trans
     }) }}
     {#{% endif %}#}
 {% endblock %}

@@ -15,28 +15,28 @@ use Oro\Bundle\SecurityBundle\Annotation\Acl;
 
 
 /**
- * Scraper controller.
+ * History controller.
  *
- * @Route("/scraper")
+ * @Route("/history")
  */
-class ScraperController extends Controller
+class HistoryController extends Controller
 {
 
     /**
      * @Route(
      *      "/",
-     *      name="balancenet_scrapy_scraper_index",
+     *      name="balancenet_scrapy_history_index",
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
-     * @AclAncestor("balancenet_scrapy_scraper_view")
+     * @AclAncestor("balancenet_scrapy_history_view")
      * @Template
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BalancenetScrapyBundle:Scraper')->findAll();
+        $entities = $em->getRepository('BalancenetScrapyBundle:History')->findAll();
 
         return array(
             'entities' => $entities,
@@ -46,7 +46,7 @@ class ScraperController extends Controller
     /**
      * Create user form
      *
-     * @Route("/create", name="balancenet_scrapy_scraper_create")
+     * @Route("/create/{id}", name="balancenet_scrapy_scraper_create", requirements={"id"="\d+"})
      * @Template("BalancenetScrapyBundle:Scraper:update.html.twig")
      * @Acl(
      *      id="balancenet_scrapy_scraper_create",

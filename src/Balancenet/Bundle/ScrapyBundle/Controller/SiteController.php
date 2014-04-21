@@ -15,28 +15,28 @@ use Oro\Bundle\SecurityBundle\Annotation\Acl;
 
 
 /**
- * Scraper controller.
+ * Site controller.
  *
- * @Route("/scraper")
+ * @Route("/site")
  */
-class ScraperController extends Controller
+class SiteController extends Controller
 {
 
     /**
      * @Route(
      *      "/",
-     *      name="balancenet_scrapy_scraper_index",
+     *      name="balancenet_scrapy_site_index",
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
-     * @AclAncestor("balancenet_scrapy_scraper_view")
+     * @AclAncestor("balancenet_scrapy_site_view")
      * @Template
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BalancenetScrapyBundle:Scraper')->findAll();
+        $entities = $em->getRepository('BalancenetScrapyBundle:Site')->findAll();
 
         return array(
             'entities' => $entities,
@@ -46,12 +46,12 @@ class ScraperController extends Controller
     /**
      * Create user form
      *
-     * @Route("/create", name="balancenet_scrapy_scraper_create")
-     * @Template("BalancenetScrapyBundle:Scraper:update.html.twig")
+     * @Route("/create", name="balancenet_scrapy_site_create")
+     * @Template("BalancenetScrapyBundle:Site:update.html.twig")
      * @Acl(
-     *      id="balancenet_scrapy_scraper_create",
+     *      id="balancenet_scrapy_site_create",
      *      type="entity",
-     *      class="BalancenetScrapyBundle:Scraper",
+     *      class="BalancenetScrapyBundle:Site",
      *      permission="CREATE"
      * )
      */

@@ -1,7 +1,8 @@
-balanenet:
+balancenet:
   scraper:
     entity_label:        Scraper
-    entity_plural_label: Scraper
+    entity_plural_label: Scrapers
+    menu_label:          Scrapers Management
     # entity_description:  Represent address
     id.label:           Id
     parent.label:       Franchise
@@ -20,9 +21,10 @@ balanenet:
     updated_at.label:   Updated
 
 
-  franchisor:
-    entity_label:        Franchisor
-    entity_plural_label: Franchisors
+  site:
+    entity_label:        Site
+    entity_plural_label: Sites
+    menu_label:          Sites Management
     # entity_description:  Represent address
     id.label:           Id
     label.label:        Label
@@ -34,10 +36,10 @@ balanenet:
 
 
 
-  person:
-    entity_label:        Person
-    entity_plural_label: People
-
+  monitor:
+    entity_label:        Scraping Monitor
+    entity_plural_label: Scraping Monitor
+    menu_label:          Scraping Monitor
     id.label:           Id
     label.label:        Label
     firstname.label:    First Name
@@ -46,3 +48,16 @@ balanenet:
 
     created_at.label:   Created
     updated_at.label:   Updated
+
+  history:
+      entity_label:        Scraping History
+      entity_plural_label: Scraping History
+      menu_label:          Scraping History
+      id.label:           Id
+      label.label:        Label
+      firstname.label:    First Name
+      lastname.label:     Last Name
+      email.label:        Email
+
+      created_at.label:   Created
+      updated_at.label:   Updated

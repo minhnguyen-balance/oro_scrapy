@@ -1,0 +1,140 @@
+{% extends 'OroUIBundle:actions:update.html.twig' %}
+
+{% if form.vars.value.id %}
+    {% set formAction =  path('nearest_franchise_franchisee_update', { 'id': form.vars.value.id })  %}
+{% else %}
+    {% set formAction =  path('nearest_franchise_franchisee_create', { 'id': form.vars.value.parent.id }) %}
+{% endif %}
+
+
+{#{% import 'OroUIBundle::macros.html.twig' as UI %}#}
+{#{% import 'OroQueryDesignerBundle::macros.html.twig' as QD %}#}
+
+{% set gridName = 'franchisee-grid' %}
+{% set pageTitle = 'nearest.franchisee.entity_plural_label'|trans %}
+
+{% block pageHeader %}
+    {% if form.vars.value.id %}
+        {% set breadcrumbs = {
+        'entity':      form.vars.value,
+        'indexPath':   path('nearest_franchise_franchisee_index'),
+        'indexLabel': 'nearest.franchisee.entity_plural_label'|trans,
+        'entityTitle': form.vars.value.name|default('N/A')
+        }
+        %}
+        {{ parent() }}
+    {% else %}
+        {% include 'OroUIBundle::page_title_block.html.twig' %}
+    {% endif %}
+{% endblock pageHeader %}
+
+
+{% block head_script %}
+    {% include 'OroUIBundle:Js:jquery_jstree.config.js.twig' %}
+    <script type="text/javascript">
+
+        geocode_address = function (callback) {
+            var params = {
+                street:     $('#nearestfranchise_franchisee_form_street').val(),
+                street2:    $('#nearestfranchise_franchisee_form_street2').val(),
+                city:       $('#nearestfranchise_franchisee_form_city').val(),
+                postcode:   $('#nearestfranchise_franchisee_form_postalCode').val(),
+                country:    $('#nearestfranchise_franchisee_form_country').val(),
+                region:     $('#nearestfranchise_franchisee_form_region').val()
+            }
+
+            $.ajax('http://localhost:8000/franchise/franchisee/geocode',{
+                data: params,
+                dataType: "json",
+                type: "post"
+            }).done(function(data) {
+                callback(data);
+            }).fail(function(){
+                alert('geocoding failed');
+            })
+        }
+
+
+        var button = $('<a>Geocode</a>').bind('click', function(){
+            geocode_address(function(data){
+                $('#nearestfranchise_franchisee_form_latitude').val(data.geometry.coordinates[1]);
+                $('#nearestfranchise_franchisee_form_longitude').val(data.geometry.coordinates[0])
+            });
+        });
+
+        $('#nearestfranchise_franchisee_form_latitude').before(button);
+
+
+    </script>
+{% endblock %}
+
+{% block navButtons %}
+    {% if form.vars.value.id and resource_granted('DELETE', form.vars.value) %}
+        {#{{ UI.deleteButton({#}
+        {#'dataUrl': path('oro_api_delete_account', {'id': form.vars.value.id}),#}
+        {#'dataRedirect': path('nearest_franchise_franchisee_index'),#}
+        {#'dataRedirect': path('nearest_franchise_franchisee_index'),#}
+        {#'aCss': 'no-hash remove-button',#}
+        {#'dataId': form.vars.value.id,#}
+        {#'id': 'btn-remove-account',#}
+        {#'entity_label': 'nearest_campaign.page.entity_label'|trans,#}
+        {#}) }}#}
+        {{ UI.buttonSeparator() }}
+    {% endif %}
+    {{ UI.cancelButton(path('nearest_franchise_franchisee_index')) }}
+    {% if form.vars.value.id or resource_granted('nearest_franchise_franchisee_update') %}
+        {{ UI.saveAndStayButton() }}
+    {% endif %}
+    {{ UI.saveAndCloseButton() }}
+{% endblock %}
+
+
+{% block content_data %}
+    {% set id = 'fracnhisee-update' %}
+
+    {% set dataBlocks = [
+        {
+        'title': 'General'|trans,
+        'class': 'active',
+        'subblocks': [
+            {
+                'title': 'Basic Information'|trans,
+                'data': [
+                    form_row(form.name),
+                    form_row(form.enabled),
+                    form_row(form.parent)
+                ]
+            },
+            {
+                'title': 'Address Information'|trans,
+                'data': [
+                    form_row(form.street),
+                    form_row(form.street2),
+                    form_row(form.city),
+                    form_row(form.postalCode),
+                    form_row(form.country),
+                    form_row(form.region),
+
+                    form_row(form.latitude),
+                    form_row(form.longitude)
+                ]
+            },
+            {
+            'title': 'Contact Information'|trans,
+            'data': [
+                form_row(form.phone),
+                form_row(form.fax),
+                form_row(form.email),
+                form_row(form.url)
+            ]
+            }
+        ]
+    }] %}
+
+
+    {% set data = {
+    'formErrors': form_errors(form)? form_errors(form) : null,
+    'dataBlocks': dataBlocks,
+    } %}
+    {{ parent() }}
+{% endblock content_data %}

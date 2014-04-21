@@ -5,17 +5,38 @@ oro_menu_config:
             uri: '#'
 
         scraper_list:
-            label: balanenet.scraper.entity_plural_label
+            label: balancenet.scraper.menu_label
             route: balancenet_scrapy_scraper_index
             extras:
                 routes: ['balancenet_scrapy_scraper*']
                 description: List of pages
+        site_list:
+            label: balancenet.site.menu_label
+            route: balancenet_scrapy_site_index
+            extras:
+                routes: ['balancenet_scrapy_site*']
+                description: List of pages
+        scraping_monitor:
+            label: balancenet.monitor.menu_label
+            route: balancenet_scrapy_monitor_index
+            extras:
+                routes: ['balancenet_scrapy_monitor*']
+                description: Scraping Monitor
+        scraping_history:
+            label: balancenet.history.menu_label
+            route: balancenet_scrapy_history_index
+            extras:
+                routes: ['balancenet_scrapy_history*']
+                description: Scraping History
     tree:
         application_menu:
             children:
                 balancenet_scrapy_tab:
                     children:
                         scraper_list:
+                        site_list:
+                        scraping_monitor:
+                        scraping_history:
 #                            children:
 #                                franchisee_list: ~
 ##        shortcuts:
