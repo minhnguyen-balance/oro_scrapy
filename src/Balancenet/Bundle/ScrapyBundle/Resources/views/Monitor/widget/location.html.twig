@@ -1,0 +1,76 @@
+{% import 'OroUIBundle::macros.html.twig' as ui %}
+{% import 'OroTagBundle::macros.html.twig' as tag %}
+{% import 'OroEntityConfigBundle::macros.html.twig' as entityConfig %}
+<div class="widget-content">
+    <div class="row-fluid form-horizontal">
+        <div class="responsive-block">
+
+
+            {{ ui.renderProperty('nearest.franchisee.street.label'|trans, entity.street) }}
+            {{ ui.renderProperty('nearest.franchisee.street2.label'|trans, entity.street2) }}
+            {{ ui.renderProperty('nearest.franchisee.city.label'|trans, entity.city) }}
+            {{ ui.renderProperty('nearest.franchisee.postalcode.label'|trans, entity.postalcode) }}
+            {{ ui.renderProperty('nearest.franchisee.country.label'|trans, entity.country) }}
+            {{ ui.renderProperty('nearest.franchisee.region.label'|trans, entity.region) }}
+
+
+
+
+
+
+
+            {#<div id="map-canvas"></div>#}
+
+            {#<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAPba-xdFRF1Tgc_Y8au0q7RCTFtGVSKtM&amp;sensor=false&amp;m5xzts"></script>#}
+
+            {#<script>#}
+                {#var map;#}
+                {#function initialize() {#}
+                    {#var mapOptions = {#}
+                        {#zoom: 8,#}
+                        {#center: new google.maps.LatLng({{ entity.latitude }}, {{ entity.longitude }})#}
+                    {#};#}
+                    {#map = new google.maps.Map(document.getElementById('map-canvas'),#}
+                            {#mapOptions);#}
+                {#}#}
+
+{#//                $(document).ready(function(){#}
+{#//                    initialize();#}
+{#//                })#}
+
+            {#</script>#}
+
+
+
+
+        </div>
+        <div class="responsive-block">
+
+
+
+            <div id="map-canvas"></div>
+
+            <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAPba-xdFRF1Tgc_Y8au0q7RCTFtGVSKtM&sensor=false&m5xzts"></script>
+
+            {#<script>#}
+                {#var map;#}
+                {#function initialize() {#}
+
+                    {#console.log(google.maps);#}
+                    {#var mapOptions = {#}
+                        {#zoom: 8,#}
+                        {#center: new google.maps.LatLng({{ entity.latitude }}, {{ entity.longitude }})#}
+                    {#};#}
+                    {#&#123;&#35;map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);&#35;&#125;#}
+                {#}#}
+
+{#//                $(document).ready(function(){#}
+{#//                    initialize();#}
+{#//                })#}
+
+            {#</script>#}
+
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.latitude }},{{ entity.longitude }}&markers=color:blue%7Clabel:S%7C{{ entity.latitude }},{{ entity.longitude }}&size=600x300&zoom=13&key=AIzaSyAPba-xdFRF1Tgc_Y8au0q7RCTFtGVSKtM&sensor=false" />
+        </div>
+    </div>
+</div>

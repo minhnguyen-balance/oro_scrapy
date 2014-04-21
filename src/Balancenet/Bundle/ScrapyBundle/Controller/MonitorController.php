@@ -46,12 +46,12 @@ class MonitorController extends Controller
     /**
      * Create user form
      *
-     * @Route("/create/{id}", name="balancenet_scrapy_scraper_create", requirements={"id"="\d+"})
-     * @Template("BalancenetScrapyBundle:Scraper:update.html.twig")
+     * @Route("/create", name="balancenet_scrapy_monitor_create")
+     * @Template("BalancenetScrapyBundle:Monitor:update.html.twig")
      * @Acl(
-     *      id="balancenet_scrapy_scraper_create",
+     *      id="balancenet_scrapy_monitor_create",
      *      type="entity",
-     *      class="BalancenetScrapyBundle:Scraper",
+     *      class="BalancenetScrapyBundle:Monitor",
      *      permission="CREATE"
      * )
      */
