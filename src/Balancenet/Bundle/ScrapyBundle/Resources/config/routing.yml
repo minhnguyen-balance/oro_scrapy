@@ -1,3 +1,4 @@
-balancenet_scrapy_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BalancenetScrapyBundle:Default:index }
+balancenet_scrapy:
+    resource: "@BalancenetScrapyBundle/Controller"
+    type: annotation
+    prefix: /scrapy

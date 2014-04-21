@@ -1,2 +1,2 @@
 bundles:
-  - { name: Balancenet\Bundle\ScrapyBundle\BalancnetScrapyBundle, priority: 100 }
+  - { name: Balancenet\Bundle\ScrapyBundle\BalancenetScrapyBundle, priority: 100 }

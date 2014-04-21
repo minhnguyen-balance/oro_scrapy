@@ -1,5 +1,5 @@
 datagrid:
-    #Franchisor Grid
+    #Scraper Grid
     scraper-grid:
         extended_entity_name: %balancenet_scrapy.entity.scraper.class%
         options:
@@ -47,38 +47,20 @@ datagrid:
         actions:
             view:
                 type:          navigate
-                acl_resource:  nearest_franchise_franchisor_view
+                acl_resource:  balancenet_scrapy_scrapyer_view
                 label:         View
                 icon:          user
                 link:          view_link
                 rowAction:     true
             update:
                 type:          navigate
-                acl_resource:  nearest_franchise_franchisor_update
+                acl_resource:  balancenet_scrapy_scrapyer_update
                 label:         Update
                 icon:          edit
                 link:          update_link
             delete:
                 type:          delete
-                acl_resource:  nearest_franchise_franchisor_delete
+                acl_resource:  balancenet_scrapy_scrapyer_delete
                 label:         Delete
                 icon:          trash
                 link:          delete_link
-
-    # Tasks assigned to user
-    franchisee_people_grid:
-        extend: person-grid
-        source:
-            query:
-                where:
-                    and:
-                        - p.franchisee = :franchiseeId
-
-    # Tasks assigned to user
-    franchisor_franchisees_grid:
-        extend: franchisee-grid
-        source:
-            query:
-                where:
-                    and:
-                        - f.parent = :franchisorId

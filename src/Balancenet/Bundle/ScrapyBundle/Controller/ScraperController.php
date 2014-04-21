@@ -36,7 +36,7 @@ class ScraperController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BalancenetScrapy:Scraper')->findAll();
+        $entities = $em->getRepository('BalancenetScrapyBundle:Scraper')->findAll();
 
         return array(
             'entities' => $entities,
@@ -46,22 +46,18 @@ class ScraperController extends Controller
     /**
      * Create user form
      *
-     * @Route("/create/{id}", name="nearest_franchise_person_create", requirements={"id"="\d+"})
-     * @Template("NearestFranchiseBundle:Person:update.html.twig")
+     * @Route("/create/{id}", name="balancenet_scrapy_scraper_create", requirements={"id"="\d+"})
+     * @Template("BalancenetScrapyBundle:Scraper:update.html.twig")
      * @Acl(
-     *      id="nearest_campaign_page_create",
+     *      id="balancenet_scrapy_scraper_create",
      *      type="entity",
-     *      class="NearestFranchiseBundle:Person",
+     *      class="BalancenetScrapyBundle:Scraper",
      *      permission="CREATE"
      * )
      */
-    public function createAction(Franchisee $franchisee)
+    public function createAction()
     {
-        $person = new Person();
-        $person->setFranchisee($franchisee);
-
-
-        return $this->update($person);
+        return $this->update();
     }
 
 
@@ -147,26 +143,26 @@ class ScraperController extends Controller
         }
 
 
-        if ($this->get('nearest_franchise.form.handler.person')->process($entity)) {
+        if ($this->get('nearest_franchise.form.handler.franchisor')->process($entity)) {
             $this->get('session')->getFlashBag()->add(
                 'success',
-                'The person has been saved'
+                'the Franchisee has been saved'
             );
 
             return $this->get('oro_ui.router')->actionRedirect(
                 array(
-                    'route' => 'nearest_franchise_person_update',
+                    'route' => 'nearest_franchise_franchisor_update',
                     'parameters' => array('id' => $entity->getId()),
                 ),
                 array(
-                    'route' => 'nearest_franchise_person_view',
+                    'route' => 'nearest_franchise_franchisor_view',
                     'parameters' => array('id' => $entity->getId())
                 )
             );
         }
 
         return array(
-            'form' => $this->get('nearest_franchise.form.person')->createView()
+            'form' => $this->get('balancenet_scrapy.form.scraper')->createView()
         );
     }
 

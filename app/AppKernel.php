@@ -10,7 +10,7 @@ class AppKernel extends OroKernel
     {
         $bundles = array(
         // bundles,
-            new Balancenet\Bundle\ScrapyBundle\BalancenetScrapyBundle(),
+           /* new Balancenet\Bundle\ScrapyBundle\BalancenetScrapyBundle(),*/
         );
 
         if (in_array($this->getEnvironment(), array('dev'))) {

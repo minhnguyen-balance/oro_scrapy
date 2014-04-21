@@ -5,23 +5,11 @@ oro_menu_config:
             uri: '#'
 
         scraper_list:
-            label: balanenet.scrapyer.entity_plural_label
+            label: balanenet.scraper.entity_plural_label
             route: balancenet_scrapy_scraper_index
             extras:
                 routes: ['balancenet_scrapy_scraper*']
                 description: List of pages
-
-##        shortcut_franchisee_create:
-##            label: Create new page
-##            route: nearest_franchise_franchisee_create
-##            extras:
-##                description: Create new task
-##        shortcut_franchisee_list:
-##            label: Show tasks list
-##            route: nearest_franchise_franchisee_index
-##            extras:
-##                description: List of tasks
-
     tree:
         application_menu:
             children:

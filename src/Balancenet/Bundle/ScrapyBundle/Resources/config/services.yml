@@ -1,9 +1,7 @@
 parameters:
   balancenet_scrapy.entity.scraper.class: Balancenet\Bundle\ScrapyBundle\Entity\Scraper
 
-  nearest_franchise.event_listener.datagrid.franchisee_people_listener.class: Nearest\Bundle\FranchiseBundle\EventListener\Datagrid\FranchiseePeopleListener
-  nearest_franchise.event_listener.datagrid.franchisor_franchisee_listener.class: Nearest\Bundle\FranchiseBundle\EventListener\Datagrid\FranchisorFranchiseeListener
-
+  balancenet_scrapy.event_listener.datagrid.scrapy_scraper_listener.class: Balancenet\Bundle\ScrapyBundle\EventListener\Datagrid\ScraperListener
 
 services:
 

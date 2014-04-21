@@ -1,5 +1,5 @@
 balanenet:
-  scrapy:
+  scraper:
     entity_label:        Scraper
     entity_plural_label: Scraper
     # entity_description:  Represent address
