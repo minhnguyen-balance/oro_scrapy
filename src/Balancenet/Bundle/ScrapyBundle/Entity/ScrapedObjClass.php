@@ -7,9 +7,10 @@
 namespace Balancenet\Bundle\ScrapyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
-
+use Balancenet\Bundle\ScrapyBundle\Entity\ScrapedObjAttr;
 
 /**
  * Class ScrapedObjClass
@@ -59,9 +60,16 @@ class ScrapedObjClass
     /**
      * @var scrapedObjAttrs
      *
-     * @ORM\OneToMany(targetEntity="ScrapedObjAttr", mappedBy="objClassId")
+     * @ORM\OneToMany(targetEntity="ScrapedObjAttr", mappedBy="scrapedObjClass")
      */
     private $scrapedObjAttrs;
+
+    /**
+     * @var scrapers
+     *
+     * @ORM\OneToMany(targetEntity="Scraper", mappedBy="scrapedObjClass")
+     */
+    private $scrapers;
 
     /**
      * @var \DateTime
@@ -81,6 +89,7 @@ class ScrapedObjClass
     {
 
         $this->scrapedObjAttrs = new ArrayCollection();
+        $this->scrapers = new ArrayCollection();
 
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
@@ -275,5 +284,38 @@ class ScrapedObjClass
     public function getScrapedObjAttrs()
     {
         return $this->scrapedObjAttrs;
+    }
+
+    /**
+     * Add scrapers
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\Scraper $scrapers
+     * @return ScrapedObjClass
+     */
+    public function addScraper(\Balancenet\Bundle\ScrapyBundle\Entity\Scraper $scrapers)
+    {
+        $this->scrapers[] = $scrapers;
+
+        return $this;
+    }
+
+    /**
+     * Remove scrapers
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\Scraper $scrapers
+     */
+    public function removeScraper(\Balancenet\Bundle\ScrapyBundle\Entity\Scraper $scrapers)
+    {
+        $this->scrapers->removeElement($scrapers);
+    }
+
+    /**
+     * Get scrapers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getScrapers()
+    {
+        return $this->scrapers;
     }
 }

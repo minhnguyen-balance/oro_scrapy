@@ -8,6 +8,8 @@ namespace Balancenet\Bundle\ScrapyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Balancenet\Bundle\ScrapyBundle\Entity\ScrapedObjClass;
+
 /**
  * Class ScrapedObjAttr
  * @ORM\Table(name="scrapy_scrapedobjattr")
@@ -38,7 +40,7 @@ class ScrapedObjAttr
      * @ORM\ManyToOne(targetEntity="ScrapedObjClass", inversedBy="scrapedObjAttrs")
      * @ORM\JoinColumn(name="obj_class_id", referencedColumnName="id")
      */
-    private $objClassId;
+    private $scrapedObjClass;
 
 
     /**
@@ -125,5 +127,28 @@ class ScrapedObjAttr
     public function getAttrType()
     {
         return $this->attrType;
+    }
+
+    /**
+     * Set scrapedObjClass
+     *
+     * @param integer $scrapedObjClass
+     * @return ScrapedObjAttr
+     */
+    public function setScrapedObjClass($scrapedObjClass)
+    {
+        $this->scrapedObjClass = $scrapedObjClass;
+
+        return $this;
+    }
+
+    /**
+     * Get scrapedObjClass
+     *
+     * @return integer 
+     */
+    public function getScrapedObjClass()
+    {
+        return $this->scrapedObjClass;
     }
 }
