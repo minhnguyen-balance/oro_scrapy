@@ -66,4 +66,4 @@ class Monitor
     {
         return $this->name;
     }
-} 
+}

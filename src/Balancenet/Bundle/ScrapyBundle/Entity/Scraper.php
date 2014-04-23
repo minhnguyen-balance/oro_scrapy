@@ -66,4 +66,4 @@ class Scraper
     {
         return $this->name;
     }
-} 
+}

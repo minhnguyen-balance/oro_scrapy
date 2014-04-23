@@ -66,4 +66,4 @@ class Site
     {
         return $this->name;
     }
-} 
+}

@@ -66,4 +66,4 @@ class History
     {
         return $this->name;
     }
-} 
+}
