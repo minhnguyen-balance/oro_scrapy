@@ -34,7 +34,18 @@ balancenet:
     created_at.label:   Created
     updated_at.label:   Updated
 
+  schedulerruntime:
+      entity_label:        SchedulerRuntime
+      entity_plural_label: SchedulerRuntimes
+      menu_label:          SchedulerRuntime Management
+      # entity_description:  Represent address
+      id.label:           Id
+      label.label:        Label
+      name.label:         Name
+      owner.label:        Owner
 
+      created_at.label:   Created
+      updated_at.label:   Updated
 
   monitor:
     entity_label:        Scraping Monitor

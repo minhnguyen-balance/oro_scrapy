@@ -66,7 +66,7 @@ class Site
     /**
      * @var SchedulerRuntime
      *
-     * @ORM\ManyToOne(targetEntity="SchedulerRunTime", inversedBy="sites")
+     * @ORM\ManyToOne(targetEntity="SchedulerRuntime", inversedBy="sites")
      * @ORM\JoinColumn(name="scraper_runtime_id", referencedColumnName="id")
      */
     private $schedulerRuntime;

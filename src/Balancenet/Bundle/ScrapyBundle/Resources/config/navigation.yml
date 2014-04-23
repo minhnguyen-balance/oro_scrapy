@@ -16,6 +16,12 @@ oro_menu_config:
             extras:
                 routes: ['balancenet_scrapy_site*']
                 description: List of pages
+        scraping_schedulerruntime:
+            label: balancenet.schedulerruntime.menu_label
+            route: balancenet_scrapy_schedulerruntime_index
+            extras:
+                routes: ['balancenet_scrapy_schedulerruntime*']
+                description: Scraping Scheduler Runtime
         scraping_monitor:
             label: balancenet.monitor.menu_label
             route: balancenet_scrapy_monitor_index
@@ -35,6 +41,7 @@ oro_menu_config:
                     children:
                         scraper_list:
                         site_list:
+                        scraping_schedulerruntime:
                         scraping_monitor:
                         scraping_history:
 #                            children:

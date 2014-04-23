@@ -1,6 +1,7 @@
 parameters:
   balancenet_scrapy.entity.scraper.class: Balancenet\Bundle\ScrapyBundle\Entity\Scraper
   balancenet_scrapy.entity.site.class: Balancenet\Bundle\ScrapyBundle\Entity\Site
+  balancenet_scrapy.entity.schedulerruntime.class: Balancenet\Bundle\ScrapyBundle\Entity\SchedulerRuntime
   balancenet_scrapy.entity.history.class: Balancenet\Bundle\ScrapyBundle\Entity\History
   balancenet_scrapy.entity.monitor.class: Balancenet\Bundle\ScrapyBundle\Entity\Monitor
 
@@ -14,6 +15,10 @@ services:
 
     balancenet_scrapy.site:
         class: %balancenet_scrapy.entity.site.class%
+        #arguments: [@service_id, "plain_value", %parameter%]
+
+    balancenet_scrapy.schedulerruntime:
+        class: %balancenet_scrapy.entity.schedulerruntime.class%
         #arguments: [@service_id, "plain_value", %parameter%]
 
     balancenet_scrapy.history:

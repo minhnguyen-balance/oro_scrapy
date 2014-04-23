@@ -1,0 +1,13 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+{% set gridName = 'schedulerruntime-grid' %}
+{% set pageTitle = 'balancenet.schedulerruntime.entity_plural_label'|trans %}
+
+{% block navButtons %}
+    {#{% if resource_granted('nearest_campaign_page_create') %} -- skip acl for now #}
+    {{ UI.addButton({
+    'path': path('balancenet_scrapy_schedulerruntime_create'),
+    'entity_label': 'balancenet.schedulerruntime.entity_label'|trans
+    }) }}
+    {#{% endif %}#}
+{% endblock %}
