@@ -7,6 +7,7 @@
 namespace Balancenet\Bundle\ScrapyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Site
@@ -71,6 +72,13 @@ class Site
     private $schedulerRuntime;
 
     /**
+     * @var ScrapedProduct
+     *
+     * @ORM\OneToMany(targetEntity="ScrapedProduct", mappedBy="site")
+     */
+    private $products;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="string", length=255)
@@ -86,6 +94,9 @@ class Site
 
     public function __construct()
     {
+
+        $this->products = new ArrayCollection();
+
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
@@ -283,5 +294,38 @@ class Site
     public function getSchedulerRuntime()
     {
         return $this->schedulerRuntime;
+    }
+
+    /**
+     * Add products
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\ScrapedProduct $products
+     * @return Site
+     */
+    public function addProduct(\Balancenet\Bundle\ScrapyBundle\Entity\ScrapedProduct $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Remove products
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\ScrapedProduct $products
+     */
+    public function removeProduct(\Balancenet\Bundle\ScrapyBundle\Entity\ScrapedProduct $products)
+    {
+        $this->products->removeElement($products);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

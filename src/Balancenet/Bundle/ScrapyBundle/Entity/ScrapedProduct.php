@@ -36,6 +36,21 @@ class ScrapedProduct
     private $name;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="site_id", type="integer")
+     */
+    private $siteId;
+
+    /**
+     * @var Site
+     *
+     * @ORM\ManyToOne(targetEntity="Site", inversedBy="site_id")
+     * @ORM\JoinColumn(name="site_id", referencedColumnName="id")
+     */
+    private $site;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
@@ -143,5 +158,51 @@ class ScrapedProduct
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set siteId
+     *
+     * @param integer $siteId
+     * @return ScrapedProduct
+     */
+    public function setSiteId($siteId)
+    {
+        $this->siteId = $siteId;
+
+        return $this;
+    }
+
+    /**
+     * Get siteId
+     *
+     * @return integer 
+     */
+    public function getSiteId()
+    {
+        return $this->siteId;
+    }
+
+    /**
+     * Set site
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\Site $site
+     * @return ScrapedProduct
+     */
+    public function setSite(\Balancenet\Bundle\ScrapyBundle\Entity\Site $site = null)
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return \Balancenet\Bundle\ScrapyBundle\Entity\Site 
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }

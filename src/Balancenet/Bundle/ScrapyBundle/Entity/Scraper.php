@@ -37,9 +37,15 @@ class Scraper
     private $name;
 
     /**
-     * @var ScrapedObjClass
+     * @var int
      *
      * @ORM\Column(name="scraped_obj_class_id", type="integer")
+     */
+    private $scrapedObjClassId;
+
+    /**
+     * @var ScrapedObjClass
+     *
      * @ORM\ManyToOne(targetEntity="ScrapedObjClass", inversedBy="scrapers")
      * @ORM\JoinColumn(name="scraped_obj_class_id", referencedColumnName="id")
      */
@@ -49,6 +55,11 @@ class Scraper
      * @ORM\OneToMany(targetEntity="Site", mappedBy="scraper")
      */
     private $sites;
+
+    /**
+     * @ORM\OneToMany(targetEntity="History", mappedBy="scraper")
+     */
+    private $histories;
 
     /**
      * @var string
@@ -598,5 +609,61 @@ class Scraper
     public function getSites()
     {
         return $this->sites;
+    }
+
+    /**
+     * Set scrapedObjClassId
+     *
+     * @param integer $scrapedObjClassId
+     * @return Scraper
+     */
+    public function setScrapedObjClassId($scrapedObjClassId)
+    {
+        $this->scrapedObjClassId = $scrapedObjClassId;
+
+        return $this;
+    }
+
+    /**
+     * Get scrapedObjClassId
+     *
+     * @return integer 
+     */
+    public function getScrapedObjClassId()
+    {
+        return $this->scrapedObjClassId;
+    }
+
+    /**
+     * Add histories
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\History $histories
+     * @return Scraper
+     */
+    public function addHistory(\Balancenet\Bundle\ScrapyBundle\Entity\History $histories)
+    {
+        $this->histories[] = $histories;
+
+        return $this;
+    }
+
+    /**
+     * Remove histories
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\History $histories
+     */
+    public function removeHistory(\Balancenet\Bundle\ScrapyBundle\Entity\History $histories)
+    {
+        $this->histories->removeElement($histories);
+    }
+
+    /**
+     * Get histories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHistories()
+    {
+        return $this->histories;
     }
 }
