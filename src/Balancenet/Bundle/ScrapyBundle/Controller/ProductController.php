@@ -15,28 +15,28 @@ use Oro\Bundle\SecurityBundle\Annotation\Acl;
 
 use Balancenet\Bundle\ScrapyBundle\Entity\ScrapedObjClass;
 /**
- * Scrapedobjclass controller.
+ * Product controller.
  *
- * @Route("/scrapedobjclass")
+ * @Route("/product")
  */
-class ScrapedobjclassController extends Controller
+class ProductController extends Controller
 {
 
     /**
      * @Route(
      *      "/",
-     *      name="balancenet_scrapy_scrapedobjclass_index",
+     *      name="balancenet_scrapy_product_index",
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
-     * @AclAncestor("balancenet_scrapy_scrapedobjclass_view")
+     * @AclAncestor("balancenet_scrapy_product_view")
      * @Template
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BalancenetScrapyBundle:Scrapedobjclass')->findAll();
+        $entities = $em->getRepository('BalancenetScrapyBundle:Product')->findAll();
 
         return array(
             'entities' => $entities,
@@ -46,12 +46,12 @@ class ScrapedobjclassController extends Controller
     /**
      * Create user form
      *
-     * @Route("/create", name="balancenet_scrapy_scrapedobjclass_create")
-     * @Template("BalancenetScrapyBundle:Scrapedobjclass:update.html.twig")
+     * @Route("/create", name="balancenet_scrapy_product_create")
+     * @Template("BalancenetScrapyBundle:Product:update.html.twig")
      * @Acl(
-     *      id="balancenet_scrapy_scrapedobjclass_create",
+     *      id="balancenet_scrapy_product_create",
      *      type="entity",
-     *      class="BalancenetScrapyBundle:Scrapedobjclass",
+     *      class="BalancenetScrapyBundle:Product",
      *      permission="CREATE"
      * )
      */

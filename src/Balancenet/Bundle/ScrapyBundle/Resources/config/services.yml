@@ -2,17 +2,57 @@ parameters:
   balancenet_scrapy.entity.scrapedobjclass.class: Balancenet\Bundle\ScrapyBundle\Entity\ScrapedObjClass
   balancenet_scrapy.entity.scraper.class: Balancenet\Bundle\ScrapyBundle\Entity\Scraper
   balancenet_scrapy.entity.site.class: Balancenet\Bundle\ScrapyBundle\Entity\Site
+  balancenet_scrapy.entity.product.class: Balancenet\Bundle\ScrapyBundle\Entity\Product
   balancenet_scrapy.entity.schedulerruntime.class: Balancenet\Bundle\ScrapyBundle\Entity\SchedulerRuntime
   balancenet_scrapy.entity.history.class: Balancenet\Bundle\ScrapyBundle\Entity\History
   balancenet_scrapy.entity.monitor.class: Balancenet\Bundle\ScrapyBundle\Entity\Monitor
 
+  #ScrapedObjClass params
+  balancenet_scrapy.scrapedobjclass.manager.api.class:    Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
+  balancenet_scrapy.handler.scrapedobjclass.class:        Balancenet\Bundle\ScrapyBundle\Form\Handler\ScrapedobjclassHandler
+  balancenet_scrapy.type.scrapedobjclass.class:           Balancenet\Bundle\ScrapyBundle\Form\Type\ScrapedobjclassType
+
+
   balancenet_scrapy.event_listener.datagrid.scrapy_scraper_listener.class: Balancenet\Bundle\ScrapyBundle\EventListener\Datagrid\ScraperListener
 
 services:
+    #ScrapedObjClass config
     balancenet_scrapy.scrapedobjclass:
         class: %balancenet_scrapy.entity.scrapedobjclass.class%
         #arguments: [@service_id, "plain_value", %parameter%]
 
+    balancenet_scrapy.form.type.scrapedobjclass:
+        class: %balancenet_scrapy.type.scrapedobjclass.class%
+        arguments:
+            - @router
+            - @oro_locale.formatter.name
+        tags:
+            - { name: form.type, alias: balancenet_scrapy_scrapedobjclass }
+
+    balancenet_scrapy.form.scrapedobjclass:
+        class:            Symfony\Component\Form\Form
+        factory_method:   createNamed
+        factory_service:  form.factory
+        arguments:        ["balancenet_scrapy_scrapedobjclass_form", "balancenet_scrapy_scrapedobjclass", null]
+
+    balancenet_scrapy.scrapedobjclass.manager.api:
+        class: %balancenet_scrapy.scrapedobjclass.manager.api.class%
+        arguments:
+            - %balancenet_scrapy.entity.scrapedobjclass.class%
+            - @doctrine.orm.entity_manager
+
+    balancenet_scrapy.form.handler.scrapedobjclass:
+        class: %balancenet_scrapy.handler.scrapedobjclass.class%
+        scope: request
+        arguments:
+            - @balancenet_scrapy.form.scrapedobjclass
+            - @request
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: oro_tag.tag_manager }
+
+
+    #Scraper config
     balancenet_scrapy.scraper:
         class: %balancenet_scrapy.entity.scraper.class%
         #arguments: [@service_id, "plain_value", %parameter%]

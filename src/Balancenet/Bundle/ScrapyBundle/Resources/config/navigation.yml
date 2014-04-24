@@ -3,7 +3,7 @@ oro_menu_config:
         balancenet_scrapy_tab:
             label: Scrapy
             uri: '#'
-        scraped_obj_class_list:
+        scrapedobjclass_list:
             label: balancenet.scrapedobjclass.menu_label
             route: balancenet_scrapy_scrapedobjclass_index
             extras:
@@ -20,6 +20,12 @@ oro_menu_config:
             route: balancenet_scrapy_site_index
             extras:
                 routes: ['balancenet_scrapy_site*']
+                description: List of pages
+        product_list:
+            label: balancenet.product.menu_label
+            route: balancenet_scrapy_product_index
+            extras:
+                routes: ['balancenet_scrapy_product*']
                 description: List of pages
         scraping_schedulerruntime:
             label: balancenet.schedulerruntime.menu_label
@@ -44,10 +50,11 @@ oro_menu_config:
             children:
                 balancenet_scrapy_tab:
                     children:
-                        scraped_obj_class_list:
+                        scrapedobjclass_list:
                         scraper_list:
-                        site_list:
                         scraping_schedulerruntime:
+                        site_list:
+                        product_list:
                         scraping_monitor:
                         scraping_history:
 #                            children:

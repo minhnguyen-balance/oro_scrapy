@@ -55,6 +55,19 @@ balancenet:
     created_at.label:   Created
     updated_at.label:   Updated
 
+  product:
+      entity_label:        Scraped Product
+      entity_plural_label: Scraped Products
+      menu_label:          Scraped Products Management
+      # entity_description:  Represent address
+      id.label:           Id
+      label.label:        Label
+      name.label:         Name
+      owner.label:        Owner
+
+      created_at.label:   Created
+      updated_at.label:   Updated
+
   schedulerruntime:
       entity_label:        SchedulerRuntime
       entity_plural_label: SchedulerRuntimes
