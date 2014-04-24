@@ -36,12 +36,22 @@ class ScrapedObjAttr
     /**
      * @var ScrapedObjClass
      *
-     * @ORM\Column(name="obj_class_id", type="integer")
      * @ORM\ManyToOne(targetEntity="ScrapedObjClass", inversedBy="scrapedObjAttrs")
      * @ORM\JoinColumn(name="obj_class_id", referencedColumnName="id")
      */
     private $scrapedObjClass;
 
+    /**
+     * @ORM\Column(name="obj_class_id", type="integer")
+     */
+    private $scrapedObjClassId;
+
+    /**
+     * @var ScraperElements
+     *
+     * @ORM\OneToMany(targetEntity="ScraperElement", mappedBy="scrapedObjAttr")
+     */
+    private $scraperElements;
 
     /**
      * @var String
@@ -150,5 +160,68 @@ class ScrapedObjAttr
     public function getScrapedObjClass()
     {
         return $this->scrapedObjClass;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->scraperElements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add scraperElements
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements
+     * @return ScrapedObjAttr
+     */
+    public function addScraperElement(\Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements)
+    {
+        $this->scraperElements[] = $scraperElements;
+
+        return $this;
+    }
+
+    /**
+     * Remove scraperElements
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements
+     */
+    public function removeScraperElement(\Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements)
+    {
+        $this->scraperElements->removeElement($scraperElements);
+    }
+
+    /**
+     * Get scraperElements
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getScraperElements()
+    {
+        return $this->scraperElements;
+    }
+
+    /**
+     * Set scrapedObjClassId
+     *
+     * @param integer $scrapedObjClassId
+     * @return ScrapedObjAttr
+     */
+    public function setScrapedObjClassId($scrapedObjClassId)
+    {
+        $this->scrapedObjClassId = $scrapedObjClassId;
+
+        return $this;
+    }
+
+    /**
+     * Get scrapedObjClassId
+     *
+     * @return integer 
+     */
+    public function getScrapedObjClassId()
+    {
+        return $this->scrapedObjClassId;
     }
 }

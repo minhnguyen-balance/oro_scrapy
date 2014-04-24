@@ -25,16 +25,32 @@ class ScraperElement
     private $id;
 
     /**
-     * @var ScrapedObjAttr
+     * @var ScrapedObjAttrId
      *
      * @ORM\Column(name="scraped_obj_attr_id", type="integer")
+     */
+    private $scrapedObjAttrId;
+
+    /**
+     * @var ScrapedObjAttr
+     *
+     * @ORM\ManyToOne(targetEntity="ScrapedObjAttr", inversedBy="scraperElements")
+     * @ORM\JoinColumn(name="scraped_obj_attr_id", referencedColumnName="id")
      */
     private $scrapedObjAttr;
 
     /**
-     * @var Scraper
+     * @var ScraperId
      *
      * @ORM\Column(name="scraper_id", type="integer")
+     */
+    private $scraperId;
+
+    /**
+     * @var Scraper
+     *
+     * @ORM\ManyToOne(targetEntity="Scraper", inversedBy="scraperElements")
+     * @ORM\JoinColumn(name="scraper_id", referencedColumnName="id")
      */
     private $scraper;
 
@@ -272,5 +288,51 @@ class ScraperElement
     public function getMandatoty()
     {
         return $this->mandatoty;
+    }
+
+    /**
+     * Set scrapedObjAttrId
+     *
+     * @param integer $scrapedObjAttrId
+     * @return ScraperElement
+     */
+    public function setScrapedObjAttrId($scrapedObjAttrId)
+    {
+        $this->scrapedObjAttrId = $scrapedObjAttrId;
+
+        return $this;
+    }
+
+    /**
+     * Get scrapedObjAttrId
+     *
+     * @return integer 
+     */
+    public function getScrapedObjAttrId()
+    {
+        return $this->scrapedObjAttrId;
+    }
+
+    /**
+     * Set scraperId
+     *
+     * @param integer $scraperId
+     * @return ScraperElement
+     */
+    public function setScraperId($scraperId)
+    {
+        $this->scraperId = $scraperId;
+
+        return $this;
+    }
+
+    /**
+     * Get scraperId
+     *
+     * @return integer 
+     */
+    public function getScraperId()
+    {
+        return $this->scraperId;
     }
 }

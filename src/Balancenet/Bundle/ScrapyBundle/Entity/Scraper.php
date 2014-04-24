@@ -57,6 +57,11 @@ class Scraper
     private $sites;
 
     /**
+     * @ORM\OneToMany(targetEntity="ScraperElement", mappedBy="scraper")
+     */
+    private $scraperElements;
+
+    /**
      * @ORM\OneToMany(targetEntity="History", mappedBy="scraper")
      */
     private $histories;
@@ -665,5 +670,38 @@ class Scraper
     public function getHistories()
     {
         return $this->histories;
+    }
+
+    /**
+     * Add scraperElements
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements
+     * @return Scraper
+     */
+    public function addScraperElement(\Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements)
+    {
+        $this->scraperElements[] = $scraperElements;
+
+        return $this;
+    }
+
+    /**
+     * Remove scraperElements
+     *
+     * @param \Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements
+     */
+    public function removeScraperElement(\Balancenet\Bundle\ScrapyBundle\Entity\ScraperElement $scraperElements)
+    {
+        $this->scraperElements->removeElement($scraperElements);
+    }
+
+    /**
+     * Get scraperElements
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getScraperElements()
+    {
+        return $this->scraperElements;
     }
 }
