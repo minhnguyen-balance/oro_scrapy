@@ -1,0 +1,15 @@
+{% import 'OroUIBundle::macros.html.twig' as ui %}
+{% import 'OroTagBundle::macros.html.twig' as tag %}
+{% import 'OroEntityConfigBundle::macros.html.twig' as entityConfig %}
+<div class="widget-content">
+    <div class="row-fluid form-horizontal">
+        <div class="responsive-block">
+            {% if entity.parent is not empty %}
+                {{ ui.renderProperty('nearest.franchisee.name.label'|trans, entity.name) }}
+            {% endif %}
+
+            {{ ui.renderProperty('nearest.franchisee.parent.label'|trans, entity.parent) }}
+
+        </div>
+    </div>
+</div>

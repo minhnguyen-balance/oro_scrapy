@@ -1,4 +1,25 @@
 balancenet:
+  scrapedobjclass :
+      entity_label:        Scraper Type
+      entity_plural_label: Scraper Types
+      menu_label:          Scraper Types Management
+      # entity_description:  Represent address
+      id.label:           Id
+      parent.label:       Franchise
+
+      name.label:         Name
+      label.label:        Label
+
+      street.label:       Street Line 1
+      street2.label:      Street Line 2
+      city.label:         City
+      region.label:       Region
+      country.label:      Country
+      postalcode.label:   Postal Code
+
+      created_at.label:   Created
+      updated_at.label:   Updated
+
   scraper:
     entity_label:        Scraper
     entity_plural_label: Scrapers

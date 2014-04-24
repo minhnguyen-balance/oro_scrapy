@@ -6,13 +6,14 @@
 
 namespace Balancenet\Bundle\ScrapyBundle\Entity\Repository;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * Class ScrapedObjClass
  * @package Balancenet\Bundle\ScrapyBundle\Entity
  */
-class ScrapedObjClassRepository
+class ScrapedObjClassRepository extends EntityRepository
 {
 
 } 
