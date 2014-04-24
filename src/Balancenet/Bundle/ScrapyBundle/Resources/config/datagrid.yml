@@ -335,7 +335,7 @@ datagrid:
             query:
                 select:
                     - f.id
-                    - f.name
+                    - f.message
                 from:
                     - { table: %balancenet_scrapy.entity.history.class%, alias: f }
         columns:
@@ -362,7 +362,7 @@ datagrid:
         sorters:
             columns:
                 name:
-                    data_name: f.name
+                    data_name: f.message
             default:
                 username: %oro_datagrid.extension.orm_sorter.class%::DIRECTION_ASC
 

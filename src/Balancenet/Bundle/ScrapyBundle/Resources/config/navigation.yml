@@ -7,7 +7,7 @@ oro_menu_config:
             label: balancenet.scrapedobjclass.menu_label
             route: balancenet_scrapy_scrapedobjclass_index
             extras:
-                routes: ['balancenet_scrapy_scrapeobjclass*']
+                routes: ['balancenet_scrapy_scrapedobjclass*']
                 description: List of pages
         scraper_list:
             label: balancenet.scraper.menu_label
